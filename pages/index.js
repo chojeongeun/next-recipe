@@ -2,12 +2,13 @@ import Head from 'next/head';
 import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
-import { Visual, VisualWithText } from '@/components/pic/Visual';
+import { Visual, VisualWithContent, VisualWithText } from '@/components/pic/Visual';
 
 //https://www.themealdb.com
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
 	console.log(newMeals);
+
 	return (
 		<>
 			<Head>
@@ -21,14 +22,20 @@ export default function Home({ meals }) {
 				<VisualWithText
 					imgSrc={newMeals[0].strMealThumb}
 					imgTxt={newMeals[0].strMeal}
-					style={{ color: 'yellow', fontSize: 20 }}
+					style={{ color: 'yellow', fontSize: 12 }}
 				/>
+
+				<VisualWithContent imgSrc={newMeals[1].strMealThumb} style={{ color: 'aqua' }}>
+					<strong>자식요소</strong>
+				</VisualWithContent>
+
 				<figure className='visual'>
 					<article className='bg'>
 						{newMeals.map((item) => (
 							<Visual key={item.idMeal} imgSrc={item.strMealThumb} />
 						))}
 					</article>
+
 					<article className='list'>
 						{newMeals.map((item) => (
 							<h2 key={item.idMeal}>{item.strMeal}</h2>
@@ -39,10 +46,12 @@ export default function Home({ meals }) {
 		</>
 	);
 }
+
 export async function getStaticProps() {
 	//props로 데이터 넘길때에는 data안쪽의 값까지 뽑아낸다음에 전달
 	const { data } = await axios.get('/filter.php?c=Seafood');
 	console.log('data fetching on Server', data);
+
 	return {
 		props: data,
 		revalidate: 60 * 60 * 24,
