@@ -2,12 +2,12 @@ import Head from 'next/head';
 import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
-import Visual from '@/components/pic/Visual';
+import { Visual, VisualWithText } from '@/components/pic/Visual';
 
 //https://www.themealdb.com
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
-
+	console.log(newMeals);
 	return (
 		<>
 			<Head>
@@ -18,6 +18,11 @@ export default function Home({ meals }) {
 			</Head>
 
 			<main className={clsx(styles.main)}>
+				<VisualWithText
+					imgSrc={newMeals[0].strMealThumb}
+					imgTxt={newMeals[0].strMeal}
+					style={{ color: 'yellow', fontSize: 20 }}
+				/>
 				<figure className='visual'>
 					<article className='bg'>
 						{newMeals.map((item) => (
@@ -34,14 +39,12 @@ export default function Home({ meals }) {
 		</>
 	);
 }
-
 export async function getStaticProps() {
-	//props로 데이터 넘길때에는 data 안쪽의 값까지 뽑아낸 다음에 전달
+	//props로 데이터 넘길때에는 data안쪽의 값까지 뽑아낸다음에 전달
 	const { data } = await axios.get('/filter.php?c=Seafood');
 	console.log('data fetching on Server', data);
-
 	return {
 		props: data,
-		revalidate: 60 * 60 * 24, //하루
+		revalidate: 60 * 60 * 24,
 	};
 }
