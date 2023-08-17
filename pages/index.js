@@ -21,10 +21,8 @@ export default function Home({ meals }) {
 
 			<main className={clsx(styles.main)}>
 				<div className={clsx(styles.box)}>
-					{/* 부모요소에서 직접 아톰컴포넌트에 클래스명을 지정해서 style을 overwrite하고싶을때 클래스를 등록한 후 props를 전달 */}
-					<Visual imgSrc={meals[0].strMealThumb} className={styles.customPic}>
-						<span>Hello</span>
-					</Visual>
+					{/* 부모요소에서 직접 아톰컴포넌트에 클래스명을 지정해서 style을 overwrite하고 싶을떄는 클래스를 등록한후 props전달 */}
+					<Visual imgSrc={meals[0].strMealThumb} className={styles.customPic}></Visual>
 				</div>
 			</main>
 		</>
