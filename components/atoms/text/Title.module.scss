@@ -1,6 +1,12 @@
 .tit {
+	color: #333;
+	transition: 0.5s;
 	a {
 		font-size: inherit;
 		color: inherit;
+		transition: inherit;
+	}
+	&:hover {
+		color: orange;
 	}
 }
