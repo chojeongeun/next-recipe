@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import axios from 'axios';
 import Title from '@/components/atoms/text/Title';
 
-//https://www.themealdb.com
 export default function Home({ meals }) {
 	//idMeal
 	//strMeal
@@ -24,20 +23,22 @@ export default function Home({ meals }) {
 					url={'/abc'}
 					className={styles.txt}
 					//style에 컬러값 적용시 hover값까지 같이 스크립트로 덮어쓰기 되므로
-					//아예 hover색상값이 같이 그룹으로 전달
+					//아예 hover색상같이 같이 그룹으로 전달
 					//style객체로 컬러값 자체를 전달하지 않으면
-					//module.scss에 있는 기본 호버 스타일 적용
-					style={{ color: 'violet', hoverColor: 'aqua' }}
+					//module.sass에 있는 기본 호버 스타일 적용
+					//style={{ color: 'violet', hoverColor: 'aqua' }}
+					type={'logo'}
 				>
 					Hello
 				</Title>
+
+				<Title type={'slogan'}>Slogan</Title>
 			</main>
 		</>
 	);
 }
 
 export async function getStaticProps() {
-	//props로 데이터 넘길때에는 data안쪽의 값까지 뽑아낸다음에 전달
 	const { data } = await axios.get('/filter.php?c=Seafood');
 	console.log('data fetching on Server', data);
 
