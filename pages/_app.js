@@ -1,4 +1,4 @@
-import Layout from '@/components/template/Layout';
+import Layout from '@/components/template/Layout/Layout';
 import '@/styles/globals.scss';
 import axios from 'axios';
 
@@ -53,5 +53,8 @@ export default function App({ Component, pageProps }) {
 
 /*
   컴포넌트 렌더링 흐름
-  1. _app.js에서 공통의 레이아웃 템플릿 컴포넌트를 가져와서 전체 컴포넌트를 wrapping처리
+  1. _app.js에서 공통의 layout 템플릿 컴포넌트를 가져와서 전체 컴포넌트를 wrapping처리
+  2. _app.js에 있는 Component는 page폴더 안쪽에 있는 각각의 페이지 컴포넌트를 의미
+  3. 모든 page 컴포넌트에는 layout컴포넌트의 공통의 구조가 적용됨
+  4. 각각의 page 컴포넌트에서 page별로 들어갈 컨텐츠를 추가
 */
