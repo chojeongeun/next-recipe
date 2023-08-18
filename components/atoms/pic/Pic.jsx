@@ -3,9 +3,12 @@ import clsx from 'clsx';
 import styles from './Pic.module.scss';
 import Link from 'next/link';
 import { HashLoader } from 'react-spinners';
+import { useState } from 'react';
 
 //react-spinners
 export function Pic({ imgSrc, style, imgTxt, children, className, priority = false, url }) {
+	const [IsLoaded, setIsLoaded] = useState(false);
+
 	return (
 		<div className={clsx(styles.pic, className)} style={style}>
 			<Image
@@ -14,6 +17,7 @@ export function Pic({ imgSrc, style, imgTxt, children, className, priority = fal
 				priority={priority}
 				fill
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+				onLoadingComplete={() => setIsLoaded(true)}
 			/>
 
 			{imgTxt && (
@@ -45,6 +49,7 @@ export function Pic({ imgSrc, style, imgTxt, children, className, priority = fal
 				}}
 				size={100}
 				color={'aqua'}
+				loading={!IsLoaded}
 			/>
 		</div>
 	);
