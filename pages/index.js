@@ -2,13 +2,15 @@ import Head from 'next/head';
 import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
+import Title from '@/components/atoms/text/Title';
 import Text from '@/components/atoms/text/Text';
 import { Pic } from '@/components/atoms/pic/Pic';
 
-export default function Home({ meals }) {
+export default function Home({ meals, category }) {
 	//idMeal
 	//strMeal
 	//strMealThumb
+	console.log(category);
 	console.log(meals);
 	return (
 		<>
@@ -19,21 +21,24 @@ export default function Home({ meals }) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={clsx(styles.main)}>
-				<div className={clsx(styles.picFrame)}>
-					<Pic imgSrc={meals[0].strMealThumb} />
-				</div>
-			</main>
+			<main className={clsx(styles.main)}></main>
 		</>
 	);
 }
 
 export async function getStaticProps() {
-	const { data } = await axios.get('/filter.php?c=Seafood');
-	console.log('data fetching on Server', data);
+	const list = [];
+	const { data: obj } = await axios.get('/categories.php');
+	const items = obj.categories;
+	items.forEach((el) => list.push(el.strCategory));
+	const newList = list.filter((el) => el !== 'Goat' && el !== 'Vegan' && el !== 'Starter');
+
+	const randomNum = Math.floor(Math.random() * newList.length);
+
+	const { data } = await axios.get(`/filter.php?c=${newList[randomNum]}`);
 
 	return {
-		props: data,
-		revalidate: 60 * 60 * 24,
+		props: { ...data, category: newList[randomNum] },
+		revalidate: 10,
 	};
 }
