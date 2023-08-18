@@ -50,3 +50,8 @@ export default function App({ Component, pageProps }) {
   SSG: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 렌더링 (타이밍: 프로젝트가 빌드될때 한번)
   ISR: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 렌더링 (일정 시간을 직접 설정해서, 설정한 시간마다 다시 데이터 refetching후 빌드)
 */
+
+/*
+  컴포넌트 렌더링 흐름
+  1. _app.js에서 공통의 레이아웃 템플릿 컴포넌트를 가져와서 전체 컴포넌트를 wrapping처리
+*/
