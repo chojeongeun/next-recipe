@@ -6,6 +6,7 @@ import Title from '@/components/atoms/text/Title';
 import Text from '@/components/atoms/text/Text';
 import { Pic } from '@/components/atoms/pic/Pic';
 import Navbar from '@/components/molecules/Navbar';
+import Header from '@/components/organisms/Header';
 
 export default function Home({ meals, category }) {
 	//idMeal
@@ -23,7 +24,7 @@ export default function Home({ meals, category }) {
 			</Head>
 
 			<main className={clsx(styles.main)}>
-				<Navbar names={['Find Recipe', 'My Favorait']} gap={20} />
+				<Header />
 			</main>
 		</>
 	);
