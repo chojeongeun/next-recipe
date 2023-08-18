@@ -1,12 +1,5 @@
 import Head from 'next/head';
-import styles from './Home.module.scss';
-import clsx from 'clsx';
 import axios from 'axios';
-import Title from '@/components/atoms/text/Title';
-import Text from '@/components/atoms/text/Text';
-import { Pic } from '@/components/atoms/pic/Pic';
-import Navbar from '@/components/molecules/Navbar';
-import Header from '@/components/organisms/Header';
 
 export default function Home({ meals, category }) {
 	//idMeal
@@ -22,10 +15,6 @@ export default function Home({ meals, category }) {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-
-			<main className={clsx(styles.main)}>
-				<Header />
-			</main>
 		</>
 	);
 }
