@@ -39,14 +39,8 @@ export function Pic({ imgSrc, style, imgTxt, children, className, priority = fal
 				</>
 			)}
 
-			{/* spinner로딩 */}
 			<HashLoader
-				cssOverride={{
-					position: 'absolute',
-					top: '50%',
-					left: '50%',
-					transform: 'translate(-50%, -50%)',
-				}}
+				cssOverride={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
 				size={100}
 				color={'aqua'}
 				loading={!IsLoaded}
